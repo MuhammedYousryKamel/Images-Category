@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\image;
+
+use App\Category;
+use App\Http\Resources\images as ImageResource ;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -12,9 +14,11 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         //
+        
+        return ImageResource::collection($category->images);
     }
 
     /**

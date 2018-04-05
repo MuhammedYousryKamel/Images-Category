@@ -17,9 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 /*
-Route::group(['prefix'=>'category'],function(){
+Route::apiResource('/categories','CategoryController');
 
-    Route::apiResource('{category}/images','imageController');
+Route::group(['prefix'=>'categories'],function(){
+
+    Route::apiResource('/{category}/images','ImageController');
     });
     
 */
@@ -33,20 +35,21 @@ Route::get('category/{id}','CategoryController@show');
 //add new category
 Route::post('category','CategoryController@store');
 //edit category
-Route::put('category','CategoryController@store');
+Route::put('category/{id}','CategoryController@store');
 //delete category
 Route::delete('category/{id}','CategoryController@destroy');
+
 /*
 //Images
-//list all categories
-Route::get('images','imageController@index');
-//one category
-Route::get('category/{id}/image','CategoryController@show');
+//list all images
+Route::get('category/{id}/images','ImageController@index');
+//one category images
+Route::get('','CategoryController@show');
 //add new category
 Route::post('category','CategoryController@store');
 //edit category
 Route::put('category','CategoryController@store');
 //delete category
 Route::delete('category/{id}','CategoryController@destroy');
-*/
 
+*/

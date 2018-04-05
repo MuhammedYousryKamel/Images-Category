@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\category;
+use App\Category;
 
 use App\Http\Resources\category as CategoryResource ;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return category::Paginate(15);
+        return Category::all();
     }
 
     /**
@@ -38,6 +38,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+       $category = $request->isMethod('put') ? Category::findOrfail($request->id) : new Category;
+
+       $category->name = $request->input('name');
+
+       if($category->save()){
+           return new CategoryResource($category);
+       }
+
+        
     }
 
     /**
@@ -49,7 +58,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        $category = category::findOrfail($id);
+        $category = Category::findOrfail($id);
         return new CategoryResource($category);
     }
 
@@ -71,9 +80,10 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request, Category $category)
     {
         //
+       
     }
 
     /**

@@ -14,6 +14,15 @@ class images extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id , 
+            'url' => $this->url,
+            'like_count' => $this->like_count,
+            'unlike_count' => $this->unlike_count,
+            'views_count' => $this->views_count
+
+
+
+        ];
     }
 }
